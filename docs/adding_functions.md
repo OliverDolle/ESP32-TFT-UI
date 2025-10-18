@@ -12,8 +12,11 @@ The code is modular: UI in ui.cpp, menu in menu.cpp, each function in its own fi
 6. **Documentation**: Add `docs/new_module.md` with overview, functions, and extension notes.
 
 For new hardware modules:
-- Define pins in `config.h`.
+- Define pins in `config.h` as extern int.
+- Add to `pinConfigs` array in `menu.cpp` for UI config.
+- Load in `loadPins()`.
+- Use the variables in init (e.g., LoRa radio = LoRa(NSS_PIN, RST_PIN, DIO0_PIN);).
 - Include library in `platformio.ini`.
 - Initialize in new init function.
 
-This structure keeps code maintainable; new features don't touch core files much.
+This structure keeps code maintainable; new features don't touch core files much. For module swaps like NRF to LoRa, add conditional code if needed, but pins are runtime-configurable.

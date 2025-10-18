@@ -3,8 +3,19 @@
 
 DynamicJsonDocument settings(1024);
 
+int TFT_CS_PIN;
+int TFT_DC_PIN;
+int TFT_RST_PIN;
+int TOUCH_CS_PIN;
+int TOUCH_IRQ_PIN;
+int SD_CS_PIN;
+int NRF1_CE_PIN;
+int NRF1_CSN_PIN;
+int NRF2_CE_PIN;
+int NRF2_CSN_PIN;
+
 void initSD() {
-  if (!SD.begin(SD_CS)) {
+  if (!SD.begin(SD_CS_PIN)) {  // Note: Use default or temp value first if needed
     Serial.println("SD init failed!");
   }
 }
@@ -19,11 +30,37 @@ void loadSettings() {
     file.close();
   } else {
     // Default settings
-    settings["nrf_address"] = "E7E7E7E7E7";
+    settings["nrf_address1"] = "E7E7E7E7E7";
+    settings["nrf_address1"] = "D7D7D7D7D7";
     settings["wifi_ssid"] = "ESP32_Hotspot";
     settings["wifi_pass"] = "password";
+    // Default pins
+    settings["tft_cs"] = 5;
+    settings["tft_dc"] = 17;
+    settings["tft_rst"] = 16;
+    settings["touch_cs"] = 21;
+    settings["touch_irq"] = 22;
+    settings["sd_cs"] = 4;
+    settings["nrf1_ce"] = 25;
+    settings["nrf1_csn"] = 26;
+    settings["nrf2_ce"] = 27;
+    settings["nrf2_csn"] = 32;
     saveSettings();
   }
+  loadPins();
+}
+
+void loadPins() {
+  TFT_CS_PIN = settings["tft_cs"] | 5;
+  TFT_DC_PIN = settings["tft_dc"] | 17;
+  TFT_RST_PIN = settings["tft_rst"] | 16;
+  TOUCH_CS_PIN = settings["touch_cs"] | 21;
+  TOUCH_IRQ_PIN = settings["touch_irq"] | 22;
+  SD_CS_PIN = settings["sd_cs"] | 4;
+  NRF1_CE_PIN = settings["nrf1_ce"] | 25;
+  NRF1_CSN_PIN = settings["nrf1_csn"] | 26;
+  NRF2_CE_PIN = settings["nrf2_ce"] | 27;
+  NRF2_CSN_PIN = settings["nrf2_csn"] | 32;
 }
 
 void saveSettings() {

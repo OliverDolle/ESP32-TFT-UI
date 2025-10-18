@@ -9,4 +9,7 @@ void loadSettings();
 void saveSettings();
 extern DynamicJsonDocument settings;
 
+// Load dynamic pins
+void loadPins();
+
 #endif

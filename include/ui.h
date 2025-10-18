@@ -20,4 +20,7 @@ uint8_t getRed(uint16_t color);
 uint8_t getGreen(uint16_t color);
 uint8_t getBlue(uint16_t color);
 
+// Numeric input (for pin config)
+int getNumberInput(const char* prompt, int currentVal);
+
 #endif
