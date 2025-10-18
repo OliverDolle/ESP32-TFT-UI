@@ -23,10 +23,14 @@ PinConfig pinConfigs[] = {
   {"NRF1 CSN", "nrf1_csn", NRF1_CSN_PIN},
   {"NRF2 CE", "nrf2_ce", NRF2_CE_PIN},
   {"NRF2 CSN", "nrf2_csn", NRF2_CSN_PIN},
-  // Add new pins here, e.g. {"LoRa NSS", "lora_nss", LORA_NSS_PIN}
 };
 
 int numPins = sizeof(pinConfigs) / sizeof(PinConfig);
+
+struct MenuItem {
+  const char* label;
+  void (*callback)();
+};
 
 MenuItem menuItems[] = {
   {"NRF Control", nrfMenu},
@@ -75,7 +79,7 @@ void pinConfigMenu() {
     String label = String(pinConfigs[i].name) + ": " + String(pinConfigs[i].currentVal);
     drawButton(20, btnY, 280, 40, label.c_str(), TFT_CYAN);
     btnY += 50;
-    if (btnY > 200) break;  // Scroll if too many, but for now assume few
+    if (btnY > 200) break;  // Scroll if too many
   }
   drawButton(20, btnY, 280, 40, "Back", TFT_RED);
 

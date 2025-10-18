@@ -15,7 +15,7 @@ int NRF2_CE_PIN;
 int NRF2_CSN_PIN;
 
 void initSD() {
-  if (!SD.begin(SD_CS_PIN)) {  // Note: Use default or temp value first if needed
+  if (!SD.begin(SD_CS_PIN)) {
     Serial.println("SD init failed!");
   }
 }
@@ -30,11 +30,12 @@ void loadSettings() {
     file.close();
   } else {
     // Default settings
-    settings["nrf_address1"] = "E7E7E7E7E7";
-    settings["nrf_address1"] = "D7D7D7D7D7";
-    settings["wifi_ssid"] = "ESP32_Hotspot";
+    settings["nrf_address"] = "E7E7E7E7E7";
+    settings["wifi_ssid"] = "ESP32_Extender";
     settings["wifi_pass"] = "password";
-    // Default pins
+    settings["extender_mode"] = false;
+    settings["sta_ssid"] = "";
+    settings["sta_pass"] = "";
     settings["tft_cs"] = 5;
     settings["tft_dc"] = 17;
     settings["tft_rst"] = 16;

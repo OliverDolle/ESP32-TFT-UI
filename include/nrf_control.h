@@ -3,5 +3,5 @@
 
 void initNRF();
 void nrfMenu();
-
+void sendBurst(int count);
 #endif

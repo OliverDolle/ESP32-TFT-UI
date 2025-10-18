@@ -3,5 +3,6 @@
 
 void initWiFi();
 void wifiMenu();
+void configureExtender();  
 
 #endif
