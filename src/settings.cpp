@@ -30,7 +30,9 @@ void loadSettings() {
     file.close();
   } else {
     // Default settings
-    settings["nrf_address"] = "E7E7E7E7E7";
+    settings["nrf_address1"] = "\xE7\xE7\xE7\xE7\xE7";  // 5-byte address
+    settings["nrf_address2"] = "\xD7\xD7\xD7\xD7\xD7";  // 5-byte address
+    settings["nrf_data_rate"] = "2MBPS";  // Default to highest
     settings["wifi_ssid"] = "ESP32_Extender";
     settings["wifi_pass"] = "password";
     settings["extender_mode"] = false;
