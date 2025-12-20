@@ -6,8 +6,12 @@
 
 void initSD();
 void loadSettings();
-void saveSettings();
+bool saveSettings();  // Returns true if save successful
+void createDefaultSettings();
+void validateAndFillMissingSettings();
+bool isSDCardAvailable();  // Check if SD card is working
 extern DynamicJsonDocument settings;
+extern bool sdCardAvailable;  // Global SD card status flag
 
 // Load dynamic pins
 void loadPins();
