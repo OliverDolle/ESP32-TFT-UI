@@ -3,6 +3,7 @@
 #include "ui.h"
 #include "menu.h"
 #include "nrf_control.h"
+#include "cc1101_control.h"
 #include "wifi_hotspot.h"
 #include "bt_control.h"
 #include "settings.h"
@@ -17,12 +18,12 @@ void setup() {
   tft.begin();
   tft.setRotation(1);
   touch = XPT2046_Touchscreen(TOUCH_CS_PIN, TOUCH_IRQ_PIN);
-  initTouch();
-  // Splash
+  initTouch();  // Splash
   drawBmp("/splash.bmp", 0, 0);
   delay(3000);
   tft.fillScreen(TFT_BLACK);
   initNRF();
+  initCC1101();
   initWiFi();
   initBT();
   showMainMenu();

@@ -1,6 +1,7 @@
 #include "menu.h"
 #include "ui.h"
 #include "nrf_control.h"
+#include "cc1101_control.h"
 #include "wifi_hotspot.h"
 #include "bt_control.h"
 #include "settings.h"
@@ -23,6 +24,9 @@ PinConfig pinConfigs[] = {
   {"NRF1 CSN", "nrf1_csn", NRF1_CSN_PIN},
   {"NRF2 CE", "nrf2_ce", NRF2_CE_PIN},
   {"NRF2 CSN", "nrf2_csn", NRF2_CSN_PIN},
+  {"CC1101 CSN", "cc1101_csn", CC1101_CSN_PIN},
+  {"CC1101 GDO0", "cc1101_gdo0", CC1101_GDO0_PIN},
+  {"CC1101 GDO2", "cc1101_gdo2", CC1101_GDO2_PIN},
 };
 
 int numPins = sizeof(pinConfigs) / sizeof(PinConfig);
@@ -34,6 +38,7 @@ struct MenuItem {
 
 MenuItem menuItems[] = {
   {"NRF Control", nrfMenu},
+  {"CC1101 Control", cc1101Menu},
   {"WiFi Hotspot", wifiMenu},
   {"Bluetooth", btMenu},
   {"Settings", settingsMenu},

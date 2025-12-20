@@ -13,6 +13,9 @@ int NRF1_CE_PIN;
 int NRF1_CSN_PIN;
 int NRF2_CE_PIN;
 int NRF2_CSN_PIN;
+int CC1101_CSN_PIN;
+int CC1101_GDO0_PIN;
+int CC1101_GDO2_PIN;
 
 void initSD() {
   if (!SD.begin(SD_CS_PIN)) {
@@ -27,12 +30,14 @@ void loadSettings() {
     if (error) {
       Serial.println("JSON parse failed");
     }
-    file.close();
-  } else {
+    file.close();  } else {
     // Default settings
     settings["nrf_address1"] = "\xE7\xE7\xE7\xE7\xE7";  // 5-byte address
     settings["nrf_address2"] = "\xD7\xD7\xD7\xD7\xD7";  // 5-byte address
     settings["nrf_data_rate"] = "2MBPS";  // Default to highest
+    settings["cc1101_frequency"] = 433.92;  // Default 433.92 MHz
+    settings["cc1101_modulation"] = "ASK";  // Default ASK/OOK
+    settings["cc1101_power"] = 10;  // Default max power
     settings["wifi_ssid"] = "ESP32_Extender";
     settings["wifi_pass"] = "password";
     settings["extender_mode"] = false;
@@ -48,6 +53,9 @@ void loadSettings() {
     settings["nrf1_csn"] = 26;
     settings["nrf2_ce"] = 27;
     settings["nrf2_csn"] = 32;
+    settings["cc1101_csn"] = 33;
+    settings["cc1101_gdo0"] = 14;
+    settings["cc1101_gdo2"] = 12;
     saveSettings();
   }
   loadPins();
@@ -64,6 +72,9 @@ void loadPins() {
   NRF1_CSN_PIN = settings["nrf1_csn"] | 26;
   NRF2_CE_PIN = settings["nrf2_ce"] | 27;
   NRF2_CSN_PIN = settings["nrf2_csn"] | 32;
+  CC1101_CSN_PIN = settings["cc1101_csn"] | 33;
+  CC1101_GDO0_PIN = settings["cc1101_gdo0"] | 14;
+  CC1101_GDO2_PIN = settings["cc1101_gdo2"] | 12;
 }
 
 void saveSettings() {

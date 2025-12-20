@@ -24,5 +24,8 @@ extern int NRF1_CE_PIN;
 extern int NRF1_CSN_PIN;
 extern int NRF2_CE_PIN;
 extern int NRF2_CSN_PIN;
+extern int CC1101_CSN_PIN;
+extern int CC1101_GDO0_PIN;
+extern int CC1101_GDO2_PIN;
 
 #endif
