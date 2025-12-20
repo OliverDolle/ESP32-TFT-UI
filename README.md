@@ -6,16 +6,16 @@ A feature-rich touchscreen UI system for ESP32 with RF module control (NRF24L01 
 [![Framework](https://img.shields.io/badge/framework-Arduino-00979D.svg)](https://www.arduino.cc/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-## ✨ Features
+## Features
 
-### 🖥️ Display & UI
+### Display & UI
 - **320x240 TFT touchscreen** (ILI9341 driver)
 - Touch-based navigation with visual feedback
 - Custom splash screen support
 - Configurable startup duration
 - Live preview of splash images
 
-### 📡 RF Modules
+### RF Modules
 - **NRF24L01** dual module support
   - Send/receive packets
   - Burst transmission (100 packets)
@@ -29,33 +29,20 @@ A feature-rich touchscreen UI system for ESP32 with RF module control (NRF24L01 
   - Adjustable power levels
   - Burst & continuous modes
 
-### 🌐 Connectivity
+### Connectivity
 - **WiFi Hotspot** management
 - **Bluetooth** control
 - Web interface capable
 
-### ⚙️ Settings Management
+### Settings Management
 - **All settings stored on SD card** (`/settings.json`)
 - **13 configurable GPIO pins** via UI
 - No code changes needed for customization
 - Automatic save on every change
 - Backup/restore support
 
-## 📸 Screenshots
 
-```
-┌─────────────────────────────────┐
-│  ESP32 TFT UI - Main Menu      │
-├─────────────────────────────────┤
-│  [NRF Control]                  │
-│  [CC1101 Control]               │
-│  [WiFi Hotspot]                 │
-│  [Bluetooth]                    │
-│  [Settings]                     │
-└─────────────────────────────────┘
-```
-
-## 🚀 Quick Start
+## Quick Start
 
 ### Hardware Requirements
 - ESP32 development board
@@ -162,7 +149,7 @@ SCK       →   GPIO 18
 - [**CC1101 Quick Ref**](docs/cc1101_quick_ref.md) - CC1101 cheat sheet
 - [**Settings Summary**](docs/SETTINGS_SPLASH_SUMMARY.md) - Settings overview
 
-## 💾 Settings Storage
+## Settings Storage
 
 All settings are automatically saved to `/settings.json` on the SD card:
 
@@ -190,7 +177,7 @@ All settings are automatically saved to `/settings.json` on the SD card:
 
 **No code changes needed!**
 
-## 🎨 Custom Splash Screen
+## Custom Splash Screen
 
 Create a personalized startup screen:
 
@@ -202,7 +189,7 @@ Create a personalized startup screen:
 
 **Test instantly** with "Test Splash Now" - no reboot required!
 
-## 🛠️ Configuration Menu
+## Configuration Menu
 
 ```
 Main Menu
@@ -224,7 +211,7 @@ Main Menu
         └── Test Splash Now
 ```
 
-## 📚 Libraries Used
+## Libraries Used
 
 - [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) - Display driver
 - [XPT2046_Touchscreen](https://github.com/PaulStoffregen/XPT2046_Touchscreen) - Touch controller
@@ -259,7 +246,7 @@ Main Menu
 - Ensure correct CS/CE pins
 - Check Serial Monitor for initialization messages
 
-## 📊 Project Structure
+## Project Structure
 
 ```
 ESP32-TFT-UI/
@@ -284,16 +271,16 @@ ESP32-TFT-UI/
     └── ...
 ```
 
-## 🎯 Key Features
+## Key Features
 
-✅ **Persistent Settings** - All configurations stored on SD card  
-✅ **Touch UI** - Intuitive menu navigation  
-✅ **RF Control** - NRF24L01 & CC1101 support  
-✅ **Custom Splash** - Personalized startup screens  
-✅ **Pin Configuration** - Change any GPIO via UI  
-✅ **Live Preview** - Test changes without rebooting  
-✅ **Auto-Save** - Never lose your settings  
-✅ **Modular Design** - Easy to extend  
+**Persistent Settings** - All configurations stored on SD card  
+**Touch UI** - Intuitive menu navigation  
+**RF Control** - NRF24L01 & CC1101 support  
+**Custom Splash** - Personalized startup screens  
+**Pin Configuration** - Change any GPIO via UI  
+**Live Preview** - Test changes without rebooting  
+**Auto-Save** - Never lose your settings  
+**Modular Design** - Easy to extend  
 
 ## 🤝 Contributing
 
@@ -305,11 +292,11 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - TFT_eSPI library by Bodmer
 - RF24 library by TMRh20
@@ -317,14 +304,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - ArduinoJson by Benoit Blanchon
 - PlatformIO for the excellent development platform
 
-## 📞 Support
+## Support
 
 - 📖 Check the [documentation](docs/) first
 - 🐛 Report bugs via [Issues](https://github.com/yourusername/ESP32-TFT-UI/issues)
 - 💬 Ask questions in [Discussions](https://github.com/yourusername/ESP32-TFT-UI/discussions)
-- 📧 Email: your.email@example.com
 
-## 🌟 Show Your Support
+
+## Show Your Support
 
 Give a ⭐️ if this project helped you!
 
