@@ -62,12 +62,15 @@ void settingsMenu() {
   drawTitleBar("Settings");
 
   drawButton(20, 40, 280, 40, "Pin Configuration", TFT_GREEN);
-  drawButton(20, 90, 280, 40, "Back", TFT_RED);
+  drawButton(20, 90, 280, 40, "Splash Screen", TFT_GREEN);
+  drawButton(20, 140, 280, 40, "Back", TFT_RED);
 
   while (true) {
     if (isTouched(20, 40, 280, 40)) {
       pinConfigMenu();
     } else if (isTouched(20, 90, 280, 40)) {
+      splashConfigMenu();
+    } else if (isTouched(20, 140, 280, 40)) {
       showMainMenu();
       return;
     }
@@ -116,4 +119,93 @@ void pinConfigMenu() {
 
 void addMenuItem(const char* label, void (*callback)()) {
   // Dynamic addition possible here
+}
+
+void splashConfigMenu() {
+  tft.fillScreen(TFT_BLACK);
+  drawTitleBar("Splash Screen Config");
+
+  int currentDuration = settings.containsKey("splash_duration") ? 
+                        settings["splash_duration"].as<int>() : 3000;
+  String splashFile = settings.containsKey("splash_file") ? 
+                      settings["splash_file"].as<String>() : "/splash.bmp";
+
+  tft.setTextSize(2);
+  tft.setCursor(10, 40);
+  tft.print("File: ");
+  tft.print(splashFile);
+  tft.setCursor(10, 60);
+  tft.print("Duration: ");
+  tft.print(currentDuration / 1000);
+  tft.print("s");
+
+  drawButton(20, 90, 280, 40, "Set Duration (1-10s)", TFT_CYAN);
+  drawButton(20, 140, 280, 40, "Default (/splash.bmp)", TFT_CYAN);
+  drawButton(20, 190, 280, 40, "Custom Filename", TFT_CYAN);
+  drawButton(20, 240, 280, 40, "Test Splash Now", TFT_GREEN);
+  drawButton(20, 290, 280, 40, "Back", TFT_RED);
+
+  while (true) {
+    if (isTouched(20, 90, 280, 40)) {
+      int seconds = getNumberInput("Splash Duration (1-10)", currentDuration / 1000);
+      if (seconds > 0 && seconds <= 10) {
+        settings["splash_duration"] = seconds * 1000;
+        saveSettings();
+        tft.setCursor(10, 360);
+        tft.fillRect(10, 360, 300, 20, TFT_BLACK);
+        tft.print("Saved!");
+        delay(1000);
+        splashConfigMenu();
+        return;
+      }
+    } else if (isTouched(20, 140, 280, 40)) {
+      settings["splash_file"] = "/splash.bmp";
+      saveSettings();
+      tft.setCursor(10, 360);
+      tft.fillRect(10, 360, 300, 20, TFT_BLACK);
+      tft.print("Set to default");
+      delay(1000);
+      splashConfigMenu();
+      return;
+    } else if (isTouched(20, 190, 280, 40)) {
+      String newFile = getTextInput("Enter filename", splashFile);
+      if (newFile.length() > 0) {
+        if (!newFile.startsWith("/")) {
+          newFile = "/" + newFile;
+        }
+        if (!newFile.endsWith(".bmp")) {
+          newFile += ".bmp";
+        }
+        settings["splash_file"] = newFile;
+        saveSettings();
+        tft.setCursor(10, 360);
+        tft.fillRect(10, 360, 300, 20, TFT_BLACK);
+        tft.print("Saved!");
+        delay(1000);
+        splashConfigMenu();
+        return;
+      }
+    } else if (isTouched(20, 240, 280, 40)) {
+      // Test splash screen
+      File testFile = SD.open(splashFile);
+      if (testFile) {
+        testFile.close();
+        drawBmp(splashFile.c_str(), 0, 0);
+        delay(currentDuration);
+        splashConfigMenu();
+        return;
+      } else {
+        tft.fillRect(10, 360, 300, 20, TFT_BLACK);
+        tft.setCursor(10, 360);
+        tft.setTextColor(TFT_RED);
+        tft.print("File not found!");
+        delay(2000);
+        tft.setTextColor(TFT_WHITE);
+      }
+    } else if (isTouched(20, 290, 280, 40)) {
+      settingsMenu();
+      return;
+    }
+    delay(50);
+  }
 }
